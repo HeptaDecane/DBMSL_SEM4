@@ -38,7 +38,7 @@ DESCRIBE table_name;
 ```
 
 #### Views
->A view is a virtual table based on the result-set of an SQL statement,
+>A view is a virtual table based on the result-set of an SQL statement,  
 >The fields in a view are fields from one or more real tables in the database.
 ```sql
 # create
