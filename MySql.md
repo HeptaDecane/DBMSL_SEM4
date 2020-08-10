@@ -37,6 +37,27 @@ DESCRIBE table_name;
 
 ```
 
+#### Views
+>A view is a virtual table based on the result-set of an SQL statement, The fields in a view are fields from one or more real tables in the database.
+```sql
+# create
+CREATE VIEW view_name AS
+	SELECT column_name(s) FROM table_name
+		WHERE <condition>;
+
+# delete 
+DROP VIEW view_name;
+
+# alter
+ALTER VIEW view_name AS
+	SELECT column_name(s) FROM table_name
+		WHERE <condition>;
+
+# describe
+DESCRIBE view_name;
+
+```
+
 #### Columns
 ```sql
 # add
@@ -162,7 +183,7 @@ ALTER TABLE table_secondary DROP FOREIGN KEY constraint_name;
 # alongwith column creation
 CREATE TABLE table_name(
 	column_name1 datatype,
-	column_name2 datatype CHECK (column_name3 condition),
+	column_name2 datatype CHECK (<column_name3 condition>),
 	column_name3 datatype 
 );
 
@@ -172,7 +193,7 @@ CREATE TABLE table_name(
 	column_name2 datatype,
 	column_name3 datatype,
 	CONSTRAINT constraint_name
-		CHECK (column_name(s) condition)
+		CHECK (<column_name(s) condition>)
 );
 
 # with alter table
@@ -182,7 +203,7 @@ CREATE TABLE table_name(
 	column_name3 datatype
 );
 ALTER TABLE table_name ADD CONSTRAINT constraint_name 
-	CHECK (column_name(s) condition);
+	CHECK (<column_name(s) condition>);
 
 # delete
 ALTER TABLE table_name DROP CHECK constraint_name;
@@ -217,7 +238,7 @@ CREATE TABLE table_name(
 ALTER TABLE table_name ADD UNIQUE(column_name2);
 
 # delete 
-ALTER TABLE table_name DROP INDEX column_name
+ALTER TABLE table_name DROP INDEX column_name;
 
 ```
 
