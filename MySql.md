@@ -242,4 +242,24 @@ ALTER TABLE table_name ADD UNIQUE(column_name2);
 ALTER TABLE table_name DROP INDEX column_name;
 
 ```
+<br></br>
+## DDL Statements
+#### Insert
+```sql
+# into each column
+INSERT INTO table_name
+	VALUES (column1_value,column2_value,...,colunmN_value);
 
+# into specified column
+INSERT INTO table_name (columnX,columnY,columnZ)
+	VALUES (columnX_value,columnY_value,columnZ_value);
+
+# insert with select
+INSERT INTO table2 (columnX,columnY,columnZ)
+	SELECT columnP,columnQ,columnR FROM table1
+		WHERE (<condition(s)>);
+
+# copying entire table1
+INSERT INTO table1_copy
+	SELECT * FROM table1;
+```
