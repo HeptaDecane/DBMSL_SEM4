@@ -243,7 +243,7 @@ ALTER TABLE table_name DROP INDEX column_name;
 
 ```
 <br></br>
-## DDL Statements
+## DML Statements
 #### Insert
 ```sql
 # into each column
@@ -262,4 +262,5 @@ INSERT INTO table2 (columnX,columnY,columnZ)
 # copying entire table1
 INSERT INTO table1_copy
 	SELECT * FROM table1;
+	
 ```
