@@ -44,7 +44,7 @@ DESCRIBE table_name;
 # create
 CREATE VIEW view_name AS
 	SELECT column_name(s) FROM table_name
-		WHERE <condition>;
+		WHERE (<condition>);
 
 # delete 
 DROP VIEW view_name;
@@ -52,7 +52,7 @@ DROP VIEW view_name;
 # alter
 ALTER VIEW view_name AS
 	SELECT column_name(s) FROM table_name
-		WHERE <condition>;
+		WHERE (<condition>);
 
 # describe
 DESCRIBE view_name;
@@ -263,4 +263,105 @@ INSERT INTO table2 (columnX,columnY,columnZ)
 INSERT INTO table1_copy
 	SELECT * FROM table1;
 	
+```
+
+#### Update
+```sql
+UPDATE table_name SET
+	column1 = value1,
+	column2 = value2,
+	column3 = value3,
+WHERE (<condition(s)>);
+
+```
+
+#### Delete
+```sql
+# delete entire table
+DELETE FROM table_name;
+
+# delete where
+DELETE FROM table_name
+	WHERE (<condition(s)>);
+	
+```
+
+#### Select
+```sql
+# syntax
+SELECT column_name(s) FROM table_name
+	WHERE (<condition(s)>);
+
+# retrieve entire table
+SELECT * FROM table_name;
+
+# select with limit
+SELECT column_name(s) FROM table_name
+	LIMIT n;
+
+# select with alias
+SELECT
+	column_name1 AS alias1,
+	column_name2 AS alias2,
+	column_name3 AS alias3,
+	column_nameN AS aliasN
+FROM table_name;
+
+# select distinct
+SELECT DISTINCT cloumn_name FROM table_name;
+
+```
+
+#### Order
+```sql
+# syntax
+SELECT column_name(s) FROM table_name
+	WHERE <condition(s)>		
+ORDER BY column_name1 ASC|DESC, column_name2 ASC|DESC... ;
+
+# with limit
+SELECT column_name(s) FROM table_name
+ORDER BY column_name(s)
+LIMIT n;
+
+```
+
+#### Filters
+```sql
+# between
+SELECT column_name(s) FROM table_name
+	WHERE column_name BETWEEN value1 AND value2;
+
+# in
+SELECT column_name(s) FROM table_name
+	WHERE column_name IN (value1,value2,value3....);
+
+# like
+SELECT column_name(s) FROM table_name
+	WHERE column_name LIKE 'wildcard';
+/*
+	Note:
+	'%' denotes zero or more characters or digits
+	'_' denotes exact one character or digit
+*/
+```
+[regexp syntax](https://dev.mysql.com/doc/refman/8.0/en/regexp.html#regexp-syntax)
+```sql
+# regexp_like
+SELECT column_name(s) FROM table_name
+	WHERE REGEXP_LIKE(column_name,'regexp');
+
+```
+
+#### [Case Statement](https://www.w3schools.com/sql/sql_case.asp)
+>The CASE statement goes through conditions and returns a value when the first condition is met. If no conditions are true, it returns the value in the ELSE clause. If there is no ELSE part and no conditions are true, it returns NULL.
+```sql
+# syntax
+CASE
+	WHEN <condition1> THEN <result1>
+	WHEN <condition2> THEN <result2>
+	WHEN <conditionN> THEN <resultN>
+	ELSE default_result
+END AS alias
+
 ```
