@@ -365,3 +365,4 @@ CASE
 END AS alias
 
 ```
+#### Joins
