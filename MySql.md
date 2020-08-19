@@ -1,5 +1,5 @@
 ﻿## DDL Statements
-#### Databases
+### Databases
 ```sql
 # create
 CREATE DATABASE database_name;
@@ -15,7 +15,7 @@ SHOW DATABASES;
 
 ```
 
-#### Tables
+### Tables
 ```sql
 # create
 CREATE TABLE table_name(
@@ -37,7 +37,7 @@ DESCRIBE table_name;
 
 ```
 
-#### Views
+### Views
 >A view is a virtual table based on the result-set of an SQL statement,  
 >The fields in a view are fields from one or more real tables in the database.
 ```sql
@@ -59,7 +59,7 @@ DESCRIBE view_name;
 
 ```
 
-#### Columns
+### Columns
 ```sql
 # add
 ALTER TABLE table_name ADD column_name datatype;
@@ -75,7 +75,7 @@ ALTER TABLE table_name MODIFY column_name datatype;
 
 ```
 
-#### Primary Key
+### Primary Key
 ```sql
 # alongwith column creation
 CREATE TABLE table_name(
@@ -121,7 +121,7 @@ ALTER TABLE table_name DROP PRIMARY KEY;
 
 ```
 
-#### Foreign Key
+### Foreign Key
 ```sql
 CREATE TABLE table_primary(
 	column_nameA datatype PRIMARY KEY,
@@ -179,7 +179,7 @@ ALTER TABLE table_secondary ADD CONSTRAINT constraint_name
 ALTER TABLE table_secondary DROP FOREIGN KEY constraint_name;
 ```
 
-#### Check
+### Check
 ```sql
 # alongwith column creation
 CREATE TABLE table_name(
@@ -213,7 +213,7 @@ ALTER TABLE table_name DROP CONSTRAINT constraint_name;
 
 ```
 
-#### Unique
+### Unique
 ```sql
 # alongwith column creation
 CREATE TABLE table_name(
@@ -244,7 +244,7 @@ ALTER TABLE table_name DROP INDEX column_name;
 ```
 <br></br>
 ## DML Statements
-#### Insert
+### Insert
 ```sql
 # into each column
 INSERT INTO table_name
@@ -265,7 +265,7 @@ INSERT INTO table1_copy
 	
 ```
 
-#### Update
+### Update
 ```sql
 UPDATE table_name SET
 	column1 = value1,
@@ -275,7 +275,7 @@ WHERE (<condition(s)>);
 
 ```
 
-#### Delete
+### Delete
 ```sql
 # delete entire table
 DELETE FROM table_name;
@@ -286,7 +286,7 @@ DELETE FROM table_name
 	
 ```
 
-#### Select
+### Select
 ```sql
 # syntax
 SELECT column_name(s) FROM table_name
@@ -312,7 +312,7 @@ SELECT DISTINCT cloumn_name FROM table_name;
 
 ```
 
-#### Order
+### Order
 ```sql
 # syntax
 SELECT column_name(s) FROM table_name
@@ -326,7 +326,7 @@ LIMIT n;
 
 ```
 
-#### Filters
+### Filters
 ```sql
 # between
 SELECT column_name(s) FROM table_name
@@ -353,7 +353,7 @@ SELECT column_name(s) FROM table_name
 
 ```
 
-#### [Case Statement](https://www.w3schools.com/sql/sql_case.asp)
+### [Case Statement](https://www.w3schools.com/sql/sql_case.asp)
 >The CASE statement goes through conditions and returns a value when the first condition is met. If no conditions are true, it returns the value in the ELSE clause. If there is no ELSE part and no conditions are true, it returns NULL.
 ```sql
 # syntax
@@ -365,4 +365,75 @@ CASE
 END AS alias
 
 ```
-#### Joins
+
+## Joins
+### Inner Join
+>The INNER JOIN keyword selects records that have matching values in both tables.
+```sql
+# without alias
+SELECT table1.column(s), table2.column(s)
+FROM table1 INNER JOIN table2
+ON table1.columnX = table2.columnX;
+
+# with alias
+SELECT alias1.column(s), alias2.column(s)
+FROM table1 as alias1 INNER JOIN table2 as alias2
+ON alias1.columnX = alias2.columnX;
+
+# with filters
+SELECT table1.column(s), table2.column(s)
+FROM table1 INNER JOIN table2
+ON table1.columnX = table2.columnX
+WHERE <condition(s)>;
+
+# old syntax
+SELECT table1.column(s), table2.column(s)
+FROM table1, table2
+WHERE table1.columnX = table2.columnX;
+
+```
+### Left Join
+>The LEFT JOIN keyword returns all records from the left table (table1), and the matched records from the right table (table2). The result is NULL from the right side, if there is no match.
+```sql
+SELECT table1.column(s), table2.column(s)
+FROM table1 LEFT JOIN table2
+ON table1.columnX = table2.columnX;
+
+/*
+	similar syntax for 'with alias' and 'with filters' as in inner join
+*/
+
+```
+### Right Join
+>The RIGHT JOIN keyword returns all records from the right table (table2), and the matched records from the left table (table1). The result is NULL from the left side, when there is no match.
+```sql
+SELECT table1.column(s), table2.column(s)
+FROM table1 RIGHT JOIN table2
+ON table1.columnX = table2.columnX;
+
+/*
+	similar syntax for 'with alias' and 'with filters' as in inner join
+*/
+
+```
+>Note:  
+>In case of LEFT and RIGHT joins LHS and RHS is decided w.r.t ON clause.
+
+### Self Join
+``` sql
+# Pending
+```
+
+### Full Join
+>The FULL OUTER JOIN keyword returns all records when there is a match in left (table1) or right (table2) table records.
+``` sql
+# Not available in MySQL but can be emulated using union on LEFT and RIGTH joins
+```
+### Cross Join
+>The SQL CROSS JOIN produces a result set which is the number of rows in the first table multiplied by the number of rows in the second table if no WHERE clause is used along with CROSS JOIN.This kind of result is called as Cartesian Product.  
+>If WHERE or ON clause is used with CROSS JOIN, it functions like an INNER JOIN.
+```sql
+SELECT table1.column(s), table2.column(s)
+FROM table1 CROSS JOIN table2;
+
+```
