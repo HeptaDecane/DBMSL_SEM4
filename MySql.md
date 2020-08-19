@@ -420,8 +420,17 @@ ON table1.columnX = table2.columnX;
 >In case of LEFT and RIGHT joins LHS and RHS is decided w.r.t ON clause.
 
 ### Self Join
-``` sql
-# Pending
+>A SELF JOIN is a join that is used to join a table with **itself**. SELF JOIN is always inner join
+```sql
+SELECT alias1.column(s)
+FROM table_name as alias1 JOIN table_name as alias2
+ON alias1.columnX = alias2.columnX;
+
+# old syntax
+SELECT alias1.column(s)
+FROM table_name as alias1, table_name as alias2
+WHERE alias1.columnX = alias2.columnX;
+
 ```
 
 ### Full Join
