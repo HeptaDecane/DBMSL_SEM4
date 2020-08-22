@@ -446,3 +446,23 @@ SELECT table1.column(s), table2.column(s)
 FROM table1 CROSS JOIN table2;
 
 ```
+### Join Three or More Tables
+```sql
+# Syntax 1
+SELECT column_name(s) FROM table1 
+JOIN table2 ON table1.columnX = table2.columnX
+JOIN table3 ON table1.columnY = table3.columnY;
+
+# Syntax 2
+SELECT column_name(s) 
+FROM table1 JOIN table2 JOIN table3 
+ON table1.columnX = table2.columnX 
+	AND table1.columnY = table3.columnY;
+
+# Syntax 3
+SELECT column_name(s)
+FROM table1, table2, table3
+WHERE table1.columnX = table2.columnX 
+	AND table1.columnY = table3.columnY;
+
+```
