@@ -467,155 +467,66 @@ WHERE table1.columnX = table2.columnX
 
 ```
 
-## Built-in Functions
-### 1. Conversion Functions
-#### CAST
+## [Built-in Functions and Operators](https://dev.mysql.com/doc/refman/8.0/en/functions.html)
+#### COUNT
 ```sql
-# The CAST() function converts a value (of any type) into the specified datatype.
-SELECT CAST(<value> AS <type>);
+SELECT COUNT(column_name) FROM table_name;
+```
+#### AVG
+```sql
+SELECT AVG(column_name) FROM table_name;
+```
+#### MIN/MAX
+```sql
+SELECT MIN(column_name) FROM table_name;
+SELECT MAX(column_name) FROM table_name;
+```
+#### SUM
+```sql
+SELECT MIN(column_name) FROM table_name;
 ```
 #### CONVERT
 ```sql
-# The CONVERT() function converts a value into the specified datatype or character set.
 SELECT CONVERT(_value_,_type_);
 # or
 SELECT CONVERT(_value_ USING _charset_);
 ```
-
-### 2. Logical Functions
-#### ELT
-```sql
-# ELT() returns the value at the index number specified in the list of arguments.
-SELECT ELT(_index_,_value1_,_value2_,...,_valueN_);
-```
 #### IF
 ```sql
-# The IF() function returns a value if a condition is TRUE, or another value if a condition is FALSE.
-SELECT IF(<condition>, _value_if_true_, _value_if_false_);
-
+SELECT IF(<condition>, value_if_true, value_if_false);
+```
+#### ANY
+```sql
+# The ANY operator returns true if any of the subquery values meet the condition.
+SELECT column_name(s) FROM table_name  
+WHERE column_name <operator> ANY (SELECT column_name FROM table_name WHERE condition);
+```
+#### ALL
+```sql
+# The ALL operator returns true if all of the subquery values meet the condition.
+SELECT column_name(s) FROM table_name  
+WHERE column_name <operator> ALL (SELECT column_name FROM table_name WHERE condition);
 ```
 
-### 3. Math Functions
-<table frame="box" rules="all" summary="A reference that lists mathematical functions."><colgroup><col width="40%"><col width="60%"></colgroup><thead><tr><th scope="col">Name</th>
-<th scope="col">Description</th>
-</tr></thead><tbody><tr><td scope="row"><a class="link" href="mathematical-functions.html#function_abs"><code class="literal">ABS()</code></a></td>
-<td>
-      Return the absolute value
-    </td>
-</tr><tr><td scope="row"><a class="link" href="mathematical-functions.html#function_acos"><code class="literal">ACOS()</code></a></td>
-<td>
-      Return the arc cosine
-    </td>
-</tr><tr><td scope="row"><a class="link" href="mathematical-functions.html#function_asin"><code class="literal">ASIN()</code></a></td>
-<td>
-      Return the arc sine
-    </td>
-</tr><tr><td scope="row"><a class="link" href="mathematical-functions.html#function_atan"><code class="literal">ATAN()</code></a></td>
-<td>
-      Return the arc tangent
-    </td>
-</tr><tr><td scope="row"><a class="link" href="mathematical-functions.html#function_atan2"><code class="literal">ATAN2()</code>, <code class="literal">ATAN()</code></a></td>
-<td>
-      Return the arc tangent of the two arguments
-    </td>
-</tr><tr><td scope="row"><a class="link" href="mathematical-functions.html#function_ceil"><code class="literal">CEIL()</code></a></td>
-<td>
-      Return the smallest integer value not less than the argument
-    </td>
-</tr><tr><td scope="row"><a class="link" href="mathematical-functions.html#function_ceiling"><code class="literal">CEILING()</code></a></td>
-<td>
-      Return the smallest integer value not less than the argument
-    </td>
-</tr><tr><td scope="row"><a class="link" href="mathematical-functions.html#function_conv"><code class="literal">CONV()</code></a></td>
-<td>
-      Convert numbers between different number bases
-    </td>
-</tr><tr><td scope="row"><a class="link" href="mathematical-functions.html#function_cos"><code class="literal">COS()</code></a></td>
-<td>
-      Return the cosine
-    </td>
-</tr><tr><td scope="row"><a class="link" href="mathematical-functions.html#function_cot"><code class="literal">COT()</code></a></td>
-<td>
-      Return the cotangent
-    </td>
-</tr><tr><td scope="row"><a class="link" href="mathematical-functions.html#function_crc32"><code class="literal">CRC32()</code></a></td>
-<td>
-      Compute a cyclic redundancy check value
-    </td>
-</tr><tr><td scope="row"><a class="link" href="mathematical-functions.html#function_degrees"><code class="literal">DEGREES()</code></a></td>
-<td>
-      Convert radians to degrees
-    </td>
-</tr><tr><td scope="row"><a class="link" href="mathematical-functions.html#function_exp"><code class="literal">EXP()</code></a></td>
-<td>
-      Raise to the power of
-    </td>
-</tr><tr><td scope="row"><a class="link" href="mathematical-functions.html#function_floor"><code class="literal">FLOOR()</code></a></td>
-<td>
-      Return the largest integer value not greater than the argument
-    </td>
-</tr><tr><td scope="row"><a class="link" href="mathematical-functions.html#function_ln"><code class="literal">LN()</code></a></td>
-<td>
-      Return the natural logarithm of the argument
-    </td>
-</tr><tr><td scope="row"><a class="link" href="mathematical-functions.html#function_log"><code class="literal">LOG()</code></a></td>
-<td>
-      Return the natural logarithm of the first argument
-    </td>
-</tr><tr><td scope="row"><a class="link" href="mathematical-functions.html#function_log10"><code class="literal">LOG10()</code></a></td>
-<td>
-      Return the base-10 logarithm of the argument
-    </td>
-</tr><tr><td scope="row"><a class="link" href="mathematical-functions.html#function_log2"><code class="literal">LOG2()</code></a></td>
-<td>
-      Return the base-2 logarithm of the argument
-    </td>
-</tr><tr><td scope="row"><a class="link" href="mathematical-functions.html#function_mod"><code class="literal">MOD()</code></a></td>
-<td>
-      Return the remainder
-    </td>
-</tr><tr><td scope="row"><a class="link" href="mathematical-functions.html#function_pi"><code class="literal">PI()</code></a></td>
-<td>
-      Return the value of pi
-    </td>
-</tr><tr><td scope="row"><a class="link" href="mathematical-functions.html#function_pow"><code class="literal">POW()</code></a></td>
-<td>
-      Return the argument raised to the specified power
-    </td>
-</tr><tr><td scope="row"><a class="link" href="mathematical-functions.html#function_power"><code class="literal">POWER()</code></a></td>
-<td>
-      Return the argument raised to the specified power
-    </td>
-</tr><tr><td scope="row"><a class="link" href="mathematical-functions.html#function_radians"><code class="literal">RADIANS()</code></a></td>
-<td>
-      Return argument converted to radians
-    </td>
-</tr><tr><td scope="row"><a class="link" href="mathematical-functions.html#function_rand"><code class="literal">RAND()</code></a></td>
-<td>
-      Return a random floating-point value
-    </td>
-</tr><tr><td scope="row"><a class="link" href="mathematical-functions.html#function_round"><code class="literal">ROUND()</code></a></td>
-<td>
-      Round the argument
-    </td>
-</tr><tr><td scope="row"><a class="link" href="mathematical-functions.html#function_sign"><code class="literal">SIGN()</code></a></td>
-<td>
-      Return the sign of the argument
-    </td>
-</tr><tr><td scope="row"><a class="link" href="mathematical-functions.html#function_sin"><code class="literal">SIN()</code></a></td>
-<td>
-      Return the sine of the argument
-    </td>
-</tr><tr><td scope="row"><a class="link" href="mathematical-functions.html#function_sqrt"><code class="literal">SQRT()</code></a></td>
-<td>
-      Return the square root of the argument
-    </td>
-</tr><tr><td scope="row"><a class="link" href="mathematical-functions.html#function_tan"><code class="literal">TAN()</code></a></td>
-<td>
-      Return the tangent of the argument
-    </td>
-</tr><tr><td scope="row"><a class="link" href="mathematical-functions.html#function_truncate"><code class="literal">TRUNCATE()</code></a></td>
-<td>
-      Truncate to specified number of decimal places
-    </td>
-</tr></tbody></table>
+## Group by & Having
+### group by
+> The GROUP BY statement groups rows that have the same values into summary rows, like "find the number of customers in each country".   
+> The GROUP BY statement is often used with aggregate functions (COUNT, MAX, MIN, SUM, AVG) to group the result-set by one or more columns.
+```sql
+SELECT column_name(s)*
+FROM table_name
+WHERE <condition>
+GROUP BY column_name(s)*
+ORDER BY column_name(s);
+
+```
+### having
+>The `HAVING` clause is used in the `SELECT` statement to specify filter conditions for a group of rows or aggregates.
+```sql
+SELECT column_name(s)* 
+FROM table_name 
+WHERE <condition> 
+GROUP BY column_name(s)* 
+HAVING <group_condition>;
+
+```
