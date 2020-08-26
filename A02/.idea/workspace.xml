@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="00b6db98-e302-40e3-975c-769d6eccf3b9" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1gWDm8O1YtyoUe2O7Xm3KE4NaPg" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../mysql-connector-java-8.0.21.jar" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+  </component>
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="A02" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MysqlHandler" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="MysqlHandler" />
+      <module name="A02" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.MysqlHandler" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="00b6db98-e302-40e3-975c-769d6eccf3b9" name="Default Changelist" comment="" />
+      <created>1598221612137</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1598221612137</updated>
+      <workItem from="1598221614254" duration="7000" />
+      <workItem from="1598221657198" duration="7327000" />
+      <workItem from="1598239454253" duration="18005000" />
+      <workItem from="1598325551780" duration="4292000" />
+      <workItem from="1598420320019" duration="1351000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="556" y="236" width="852" height="638" key="FileChooserDialogImpl" timestamp="1598221695396">
+      <screen x="65" y="25" width="1855" height="1055" />
+    </state>
+    <state x="556" y="236" width="852" height="638" key="FileChooserDialogImpl/65.25.1855.1055@65.25.1855.1055" timestamp="1598221695396" />
+    <state width="1801" height="496" key="GridCell.Tab.0.bottom" timestamp="1598420583189">
+      <screen x="65" y="25" width="1855" height="1055" />
+    </state>
+    <state width="1801" height="496" key="GridCell.Tab.0.bottom/65.25.1855.1055@65.25.1855.1055" timestamp="1598420583189" />
+    <state width="1801" height="496" key="GridCell.Tab.0.center" timestamp="1598420583188">
+      <screen x="65" y="25" width="1855" height="1055" />
+    </state>
+    <state width="1801" height="496" key="GridCell.Tab.0.center/65.25.1855.1055@65.25.1855.1055" timestamp="1598420583188" />
+    <state width="1801" height="496" key="GridCell.Tab.0.left" timestamp="1598420583187">
+      <screen x="65" y="25" width="1855" height="1055" />
+    </state>
+    <state width="1801" height="496" key="GridCell.Tab.0.left/65.25.1855.1055@65.25.1855.1055" timestamp="1598420583187" />
+    <state width="1801" height="496" key="GridCell.Tab.0.right" timestamp="1598420583189">
+      <screen x="65" y="25" width="1855" height="1055" />
+    </state>
+    <state width="1801" height="496" key="GridCell.Tab.0.right/65.25.1855.1055@65.25.1855.1055" timestamp="1598420583189" />
+    <state x="347" y="25" width="1280" height="1055" key="SettingsEditor" timestamp="1598221703279">
+      <screen x="65" y="25" width="1855" height="1055" />
+    </state>
+    <state x="347" y="25" width="1280" height="1055" key="SettingsEditor/65.25.1855.1055@65.25.1855.1055" timestamp="1598221703279" />
+    <state x="572" y="248" key="run.anything.popup" timestamp="1598244731542">
+      <screen x="65" y="25" width="1855" height="1055" />
+    </state>
+    <state x="572" y="248" key="run.anything.popup/65.25.1855.1055@65.25.1855.1055" timestamp="1598244731542" />
+    <state x="571" y="45" width="840" height="1034" key="search.everywhere.popup" timestamp="1598229187457">
+      <screen x="65" y="25" width="1855" height="1055" />
+    </state>
+    <state x="571" y="45" width="840" height="1034" key="search.everywhere.popup/65.25.1855.1055@65.25.1855.1055" timestamp="1598229187457" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/A02$Main.ic" NAME="Main Coverage Results" MODIFIED="1598221783413" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+  </component>
+</project>
