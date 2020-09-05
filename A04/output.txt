@@ -1,0 +1,348 @@
+mysql 31165@localhost:(none)> use A04;
+You are now connected to database "A04" as user "31165"
+Time: 0.002s
+mysql 31165@localhost:A04> # 1. Find Customer details and order details using NATURAL JOIN.
+                        -> select cust_no,cust_fname,cust_lname,ISBN,qty,odate
+                        -> from customer natural join orders;
+╒═══════════╤══════════════╤══════════════╤═══════════════╤═══════╤════════════╕
+│   cust_no │ cust_fname   │ cust_lname   │          ISBN │   qty │ odate      │
+╞═══════════╪══════════════╪══════════════╪═══════════════╪═══════╪════════════╡
+│         1 │ Aruna        │ Gupte        │ 9788120348981 │     1 │ 2020-03-30 │
+├───────────┼──────────────┼──────────────┼───────────────┼───────┼────────────┤
+│         1 │ Aruna        │ Gupte        │ 9788126513345 │     1 │ 2015-04-23 │
+├───────────┼──────────────┼──────────────┼───────────────┼───────┼────────────┤
+│         2 │ Indra        │ Trivedi      │ 9788126513345 │     1 │ 2020-04-23 │
+├───────────┼──────────────┼──────────────┼───────────────┼───────┼────────────┤
+│         3 │ Tripada      │ Ganrsh       │    8176569925 │     5 │ 1020-03-31 │
+├───────────┼──────────────┼──────────────┼───────────────┼───────┼────────────┤
+│         4 │ Dharma       │ Brar         │ 9781259005589 │     7 │ 2020-05-12 │
+├───────────┼──────────────┼──────────────┼───────────────┼───────┼────────────┤
+│         4 │ Dharma       │ Brar         │ 9781259005589 │     7 │ 2015-05-12 │
+├───────────┼──────────────┼──────────────┼───────────────┼───────┼────────────┤
+│         5 │ Hema         │ Gothe        │ 9780521424264 │     1 │ 2020-06-03 │
+├───────────┼──────────────┼──────────────┼───────────────┼───────┼────────────┤
+│         6 │ Valmiki      │ Sastry       │    0132856204 │     1 │ 2020-07-14 │
+├───────────┼──────────────┼──────────────┼───────────────┼───────┼────────────┤
+│         6 │ Valmiki      │ Sastry       │ 9780521424264 │     1 │ 2015-06-03 │
+├───────────┼──────────────┼──────────────┼───────────────┼───────┼────────────┤
+│         7 │ Bharat       │ Raj          │ 9789351109341 │     1 │ 2020-08-01 │
+├───────────┼──────────────┼──────────────┼───────────────┼───────┼────────────┤
+│         8 │ Ravi         │ Bhosale      │ 9788131706886 │     2 │ 2020-06-07 │
+├───────────┼──────────────┼──────────────┼───────────────┼───────┼────────────┤
+│         9 │ Mhahden      │ Loke         │    0139137084 │     4 │ 2020-05-25 │
+├───────────┼──────────────┼──────────────┼───────────────┼───────┼────────────┤
+│        10 │ Triveni      │ Hora         │    0132856204 │     1 │ 2020-04-15 │
+╘═══════════╧══════════════╧══════════════╧═══════════════╧═══════╧════════════╛
+13 rows in set
+Time: 0.012s
+mysql 31165@localhost:A04> # 2. Find the book_ title, author_name, country.
+                        -> select title,author_name,country
+                        -> from book inner join author
+                        -> on book.author_no = author.author_no;
+╒═════════════════════════════════╤═══════════════════╤═══════════╕
+│ title                           │ author_name       │ country   │
+╞═════════════════════════════════╪═══════════════════╪═══════════╡
+│ Computer Networking             │ Jin Kurose        │ USA       │
+├─────────────────────────────────┼───────────────────┼───────────┤
+│ Theory of Finite Automata       │ J Carroll         │ USA       │
+├─────────────────────────────────┼───────────────────┼───────────┤
+│ Wireless Networks               │ Matthew S G       │ USA       │
+├─────────────────────────────────┼───────────────────┼───────────┤
+│ Computational Complexity        │ Sanjeev Arora     │ India     │
+├─────────────────────────────────┼───────────────────┼───────────┤
+│ The Theory of Computation       │ John Martin       │ USA       │
+├─────────────────────────────────┼───────────────────┼───────────┤
+│ Next Generation wireless LAN    │ Kristina Chodorow │ USA       │
+├─────────────────────────────────┼───────────────────┼───────────┤
+│ Mysql: The Definitive Guide     │ Kristina Chodorow │ USA       │
+├─────────────────────────────────┼───────────────────┼───────────┤
+│ Fundamentals of Development     │ Rajib Mall        │ India     │
+├─────────────────────────────────┼───────────────────┼───────────┤
+│ Introduction to Computer Theory │ Daniel Cohen      │ USA       │
+├─────────────────────────────────┼───────────────────┼───────────┤
+│ Ad Hoc Wireless Networks        │ Siva Ram Murthy   │ India     │
+├─────────────────────────────────┼───────────────────┼───────────┤
+│ Using Mysql                     │ Joy A Kreibich    │ USA       │
+╘═════════════════════════════════╧═══════════════════╧═══════════╛
+11 rows in set
+Time: 0.009s
+mysql 31165@localhost:A04> # 3. Find the customer ID, name and order_no of customers who have never placed an order.
+                        -> select customer.cust_no,cust_fname,cust_lname,order_no
+                        -> from  customer left join orders
+                        -> on customer.cust_no = orders.cust_no
+                        -> where order_no is null;
+╒═══════════╤══════════════╤══════════════╤════════════╕
+│   cust_no │ cust_fname   │ cust_lname   │   order_no │
+╞═══════════╪══════════════╪══════════════╪════════════╡
+│        11 │ Akhil        │ Arora        │     <null> │
+╘═══════════╧══════════════╧══════════════╧════════════╛
+1 row in set
+Time: 0.002s
+mysql 31165@localhost:A04> # 4. Find the Title, ISBN, order_no of the books for which order is not placed.
+                        -> select book.ISBN,title,order_no
+                        -> from orders right join book
+                        -> on book.ISBN = orders.ISBN
+                        -> where order_no is null;
+╒═══════════════╤══════════════════════════════╤════════════╕
+│          ISBN │ title                        │   order_no │
+╞═══════════════╪══════════════════════════════╪════════════╡
+│ 9781278903275 │ Next Generation wireless LAN │     <null> │
+├───────────────┼──────────────────────────────┼────────────┤
+│ 9781449344689 │ Mysql: The Definitive Guide  │     <null> │
+╘═══════════════╧══════════════════════════════╧════════════╛
+2 rows in set
+Time: 0.005s
+mysql 31165@localhost:A04> # 5. Display cust_fname, title,author_no,publisher_year where ISBN=1234.
+                        -> select cust_fname,title,author_no,pub_year
+                        -> from customer join orders
+                        -> on customer.cust_no = orders.cust_no
+                        -> join book on book.ISBN = orders.ISBN
+                        -> where book.ISBN='0139137084';
+╒══════════════╤═══════════════════════════╤═════════════╤════════════╕
+│ cust_fname   │ title                     │   author_no │   pub_year │
+╞══════════════╪═══════════════════════════╪═════════════╪════════════╡
+│ Mhahden      │ Theory of Finite Automata │           4 │       2017 │
+╘══════════════╧═══════════════════════════╧═════════════╧════════════╛
+1 row in set
+Time: 0.004s
+mysql 31165@localhost:A04> # 6. Display the total number of books and customer name.
+                        -> select cust_fname, cust_lname, sum(qty)
+                        -> from customer natural join orders
+                        -> group by cust_no;
+╒══════════════╤══════════════╤════════════╕
+│ cust_fname   │ cust_lname   │   sum(qty) │
+╞══════════════╪══════════════╪════════════╡
+│ Aruna        │ Gupte        │          2 │
+├──────────────┼──────────────┼────────────┤
+│ Indra        │ Trivedi      │          1 │
+├──────────────┼──────────────┼────────────┤
+│ Tripada      │ Ganrsh       │          5 │
+├──────────────┼──────────────┼────────────┤
+│ Dharma       │ Brar         │         14 │
+├──────────────┼──────────────┼────────────┤
+│ Hema         │ Gothe        │          1 │
+├──────────────┼──────────────┼────────────┤
+│ Valmiki      │ Sastry       │          2 │
+├──────────────┼──────────────┼────────────┤
+│ Bharat       │ Raj          │          1 │
+├──────────────┼──────────────┼────────────┤
+│ Ravi         │ Bhosale      │          2 │
+├──────────────┼──────────────┼────────────┤
+│ Mhahden      │ Loke         │          4 │
+├──────────────┼──────────────┼────────────┤
+│ Triveni      │ Hora         │          1 │
+╘══════════════╧══════════════╧════════════╛
+10 rows in set
+Time: 0.004s
+mysql 31165@localhost:A04> # 7. List the cust_id, order_no and ISBN with books having title 'mysql'.
+                        -> select c.cust_no,order_no,b.ISBN,title
+                        -> from book b left join orders
+                        -> on b.ISBN = orders.ISBN
+                        -> left join customer c
+                        -> on c.cust_no = orders.cust_no
+                        -> where b.title in (select title from book where title like '%mysql%');
+╒═══════════╤════════════╤═══════════════╤═════════════════════════════╕
+│   cust_no │   order_no │          ISBN │ title                       │
+╞═══════════╪════════════╪═══════════════╪═════════════════════════════╡
+│    <null> │     <null> │ 9781449344689 │ Mysql: The Definitive Guide │
+├───────────┼────────────┼───────────────┼─────────────────────────────┤
+│         7 │          4 │ 9789351109341 │ Using Mysql                 │
+╘═══════════╧════════════╧═══════════════╧═════════════════════════════╛
+2 rows in set
+Time: 0.004s
+mysql 31165@localhost:A04> # 8. Find the names of all the companies that ordered books in the year 2015
+                        -> select cust_company,order_no,ISBN
+                        -> from orders inner join customer c
+                        -> on c.cust_no = orders.cust_no
+                        -> where cust_company is not null and
+                        -> odate in (select odate from orders where odate like '2015%');
+╒════════════════╤════════════╤═══════════════╕
+│ cust_company   │   order_no │          ISBN │
+╞════════════════╪════════════╪═══════════════╡
+│ Wipro          │         11 │ 9788126513345 │
+├────────────────┼────────────┼───────────────┤
+│ Rolta          │         12 │ 9781259005589 │
+├────────────────┼────────────┼───────────────┤
+│ Mindtree       │         13 │ 9780521424264 │
+╘════════════════╧════════════╧═══════════════╛
+3 rows in set
+Time: 0.004s
+mysql 31165@localhost:A04> # 9. Create view showing the author and book details.
+                        -> create view book_display as
+                        -> select ISBN, title, pub_year, author_name
+                        -> from book join author
+                        -> on book.author_no = author.author_no;
+Query OK, 0 rows affected
+Time: 0.232s
+mysql 31165@localhost:A04> select * from book_display;
+╒═══════════════╤═════════════════════════════════╤════════════╤═══════════════════╕
+│          ISBN │ title                           │   pub_year │ author_name       │
+╞═══════════════╪═════════════════════════════════╪════════════╪═══════════════════╡
+│    0132856204 │ Computer Networking             │       2020 │ Jin Kurose        │
+├───────────────┼─────────────────────────────────┼────────────┼───────────────────┤
+│    0139137084 │ Theory of Finite Automata       │       2017 │ J Carroll         │
+├───────────────┼─────────────────────────────────┼────────────┼───────────────────┤
+│    8176569925 │ Wireless Networks               │       2020 │ Matthew S G       │
+├───────────────┼─────────────────────────────────┼────────────┼───────────────────┤
+│ 9780521424264 │ Computational Complexity        │       2019 │ Sanjeev Arora     │
+├───────────────┼─────────────────────────────────┼────────────┼───────────────────┤
+│ 9781259005589 │ The Theory of Computation       │       2020 │ John Martin       │
+├───────────────┼─────────────────────────────────┼────────────┼───────────────────┤
+│ 9781278903275 │ Next Generation wireless LAN    │       2018 │ Kristina Chodorow │
+├───────────────┼─────────────────────────────────┼────────────┼───────────────────┤
+│ 9781449344689 │ Mysql: The Definitive Guide     │       2019 │ Kristina Chodorow │
+├───────────────┼─────────────────────────────────┼────────────┼───────────────────┤
+│ 9788120348981 │ Fundamentals of Development     │       2017 │ Rajib Mall        │
+├───────────────┼─────────────────────────────────┼────────────┼───────────────────┤
+│ 9788126513345 │ Introduction to Computer Theory │       2017 │ Daniel Cohen      │
+├───────────────┼─────────────────────────────────┼────────────┼───────────────────┤
+│ 9788131706886 │ Ad Hoc Wireless Networks        │       2018 │ Siva Ram Murthy   │
+├───────────────┼─────────────────────────────────┼────────────┼───────────────────┤
+│ 9789351109341 │ Using Mysql                     │       2018 │ Joy A Kreibich    │
+╘═══════════════╧═════════════════════════════════╧════════════╧═══════════════════╛
+11 rows in set
+Time: 0.011s
+mysql 31165@localhost:A04> # 10. Perform Manipulation on simple view-Insert, update, delete, drop view.
+                        -> create view author_public as
+                        -> select author_no, author_name
+                        -> from author;
+Query OK, 0 rows affected
+Time: 0.232s
+mysql 31165@localhost:A04> select * from author_public;
+╒═════════════╤═══════════════════╕
+│   author_no │ author_name       │
+╞═════════════╪═══════════════════╡
+│           1 │ John Martin       │
+├─────────────┼───────────────────┤
+│           2 │ Sanjeev Arora     │
+├─────────────┼───────────────────┤
+│           3 │ Daniel Cohen      │
+├─────────────┼───────────────────┤
+│           4 │ J Carroll         │
+├─────────────┼───────────────────┤
+│           5 │ Kristina Chodorow │
+├─────────────┼───────────────────┤
+│           6 │ Joy A Kreibich    │
+├─────────────┼───────────────────┤
+│           7 │ Matthew S G       │
+├─────────────┼───────────────────┤
+│           8 │ Siva Ram Murthy   │
+├─────────────┼───────────────────┤
+│           9 │ Jin Kurose        │
+├─────────────┼───────────────────┤
+│          10 │ Rajib Mall        │
+╘═════════════╧═══════════════════╛
+10 rows in set
+Time: 0.006s
+mysql 31165@localhost:A04> # insert
+                        -> insert into author_public
+                        -> values (11,'Sumita Arora');
+Query OK, 1 row affected
+Time: 0.198s
+mysql 31165@localhost:A04> select * from author_public;
+╒═════════════╤═══════════════════╕
+│   author_no │ author_name       │
+╞═════════════╪═══════════════════╡
+│           1 │ John Martin       │
+├─────────────┼───────────────────┤
+│           2 │ Sanjeev Arora     │
+├─────────────┼───────────────────┤
+│           3 │ Daniel Cohen      │
+├─────────────┼───────────────────┤
+│           4 │ J Carroll         │
+├─────────────┼───────────────────┤
+│           5 │ Kristina Chodorow │
+├─────────────┼───────────────────┤
+│           6 │ Joy A Kreibich    │
+├─────────────┼───────────────────┤
+│           7 │ Matthew S G       │
+├─────────────┼───────────────────┤
+│           8 │ Siva Ram Murthy   │
+├─────────────┼───────────────────┤
+│           9 │ Jin Kurose        │
+├─────────────┼───────────────────┤
+│          10 │ Rajib Mall        │
+├─────────────┼───────────────────┤
+│          11 │ Sumita Arora      │
+╘═════════════╧═══════════════════╛
+11 rows in set
+Time: 0.002s
+mysql 31165@localhost:A04> # update
+                        -> update author_public set
+                        -> author_name = 'William Stallings'
+                        -> where author_no = 11;
+Query OK, 1 row affected
+Time: 0.158s
+mysql 31165@localhost:A04> select * from author_public;
+╒═════════════╤═══════════════════╕
+│   author_no │ author_name       │
+╞═════════════╪═══════════════════╡
+│           1 │ John Martin       │
+├─────────────┼───────────────────┤
+│           2 │ Sanjeev Arora     │
+├─────────────┼───────────────────┤
+│           3 │ Daniel Cohen      │
+├─────────────┼───────────────────┤
+│           4 │ J Carroll         │
+├─────────────┼───────────────────┤
+│           5 │ Kristina Chodorow │
+├─────────────┼───────────────────┤
+│           6 │ Joy A Kreibich    │
+├─────────────┼───────────────────┤
+│           7 │ Matthew S G       │
+├─────────────┼───────────────────┤
+│           8 │ Siva Ram Murthy   │
+├─────────────┼───────────────────┤
+│           9 │ Jin Kurose        │
+├─────────────┼───────────────────┤
+│          10 │ Rajib Mall        │
+├─────────────┼───────────────────┤
+│          11 │ William Stallings │
+╘═════════════╧═══════════════════╛
+11 rows in set
+Time: 0.005s
+mysql 31165@localhost:A04> # delete
+                        -> delete from author_public
+                        -> where author_no = 11;
+You're about to run a destructive command.
+Do you want to proceed? (y/n): y
+Your call!
+Query OK, 1 row affected
+Time: 0.109s
+mysql 31165@localhost:A04> select * from author_public;
+╒═════════════╤═══════════════════╕
+│   author_no │ author_name       │
+╞═════════════╪═══════════════════╡
+│           1 │ John Martin       │
+├─────────────┼───────────────────┤
+│           2 │ Sanjeev Arora     │
+├─────────────┼───────────────────┤
+│           3 │ Daniel Cohen      │
+├─────────────┼───────────────────┤
+│           4 │ J Carroll         │
+├─────────────┼───────────────────┤
+│           5 │ Kristina Chodorow │
+├─────────────┼───────────────────┤
+│           6 │ Joy A Kreibich    │
+├─────────────┼───────────────────┤
+│           7 │ Matthew S G       │
+├─────────────┼───────────────────┤
+│           8 │ Siva Ram Murthy   │
+├─────────────┼───────────────────┤
+│           9 │ Jin Kurose        │
+├─────────────┼───────────────────┤
+│          10 │ Rajib Mall        │
+╘═════════════╧═══════════════════╛
+10 rows in set
+Time: 0.003s
+mysql 31165@localhost:A04> # drop
+                        -> drop view author_public;
+You're about to run a destructive command.
+Do you want to proceed? (y/n): 
+You're about to run a destructive command.
+Do you want to proceed? (y/n): y
+Your call!
+Query OK, 0 rows affected
+Time: 0.228s
+mysql 31165@localhost:A04> 
+
