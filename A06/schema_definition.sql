@@ -14,4 +14,4 @@ create table employee_temp(
         emp_name varchar(16) not null,
         date_of_join date not null default (SYSDATE())
 );
-d
+
