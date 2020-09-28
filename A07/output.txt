@@ -1,0 +1,144 @@
+mysql 31165@localhost:(none)> use A07;
+You are now connected to database "A07" as user "31165"
+Time: 0.003s
+mysql 31165@localhost:A07> SELECT * FROM customer;
+╒═══════════╤══════════════════╤════════════╕
+│   cust_id │ name             │   purchase │
+╞═══════════╪══════════════════╪════════════╡
+│       101 │ Ardith Morar     │       9549 │
+├───────────┼──────────────────┼────────────┤
+│       102 │ Raymundo Torphy  │       4095 │
+├───────────┼──────────────────┼────────────┤
+│       103 │ Lisette Cronin   │       9917 │
+├───────────┼──────────────────┼────────────┤
+│       104 │ Belle Okuneva    │       2968 │
+├───────────┼──────────────────┼────────────┤
+│       105 │ Ashly Reinger    │      12177 │
+├───────────┼──────────────────┼────────────┤
+│       106 │ Odessa Lindgren  │      12844 │
+├───────────┼──────────────────┼────────────┤
+│       107 │ Roxanne Cole     │       1511 │
+├───────────┼──────────────────┼────────────┤
+│       108 │ Earnest Zieme    │       6277 │
+├───────────┼──────────────────┼────────────┤
+│       109 │ Walter Ferry     │      13829 │
+├───────────┼──────────────────┼────────────┤
+│       110 │ Walter Ferry     │      13829 │
+╘═══════════╧══════════════════╧════════════╛
+10 rows in set
+Time: 0.006s
+mysql 31165@localhost:A07> SELECT * from category;
+╒═══════════╤════════╤═════════╕
+│ cust_id   │ name   │ class   │
+╞═══════════╪════════╪═════════╡
+╘═══════════╧════════╧═════════╛
+0 rows in set
+Time: 0.003s
+mysql 31165@localhost:A07> call grade_customers();
+Query OK, 0 rows affected
+Time: 1.418s
+mysql 31165@localhost:A07> SELECT * from category;
+╒═══════════╤══════════════════╤══════════╕
+│   cust_id │ name             │ class    │
+╞═══════════╪══════════════════╪══════════╡
+│       101 │ Ardith Morar     │ GOLD     │
+├───────────┼──────────────────┼──────────┤
+│       102 │ Raymundo Torphy  │ SILVER   │
+├───────────┼──────────────────┼──────────┤
+│       103 │ Lisette Cronin   │ GOLD     │
+├───────────┼──────────────────┼──────────┤
+│       104 │ Belle Okuneva    │ SILVER   │
+├───────────┼──────────────────┼──────────┤
+│       105 │ Ashly Reinger    │ PLATINUM │
+├───────────┼──────────────────┼──────────┤
+│       106 │ Odessa Lindgren  │ PLATINUM │
+├───────────┼──────────────────┼──────────┤
+│       107 │ Roxanne Cole     │ BASIC    │
+├───────────┼──────────────────┼──────────┤
+│       108 │ Earnest Zieme    │ GOLD     │
+├───────────┼──────────────────┼──────────┤
+│       109 │ Walter Ferry     │ PLATINUM │
+├───────────┼──────────────────┼──────────┤
+│       110 │ Walter Ferry     │ PLATINUM │
+╘═══════════╧══════════════════╧══════════╛
+10 rows in set
+Time: 0.005s
+mysql 31165@localhost:A07> SELECT * FROM customer WHERE cust_id=101;
+╒═══════════╤══════════════╤════════════╕
+│   cust_id │ name         │   purchase │
+╞═══════════╪══════════════╪════════════╡
+│       101 │ Ardith Morar │       9549 │
+╘═══════════╧══════════════╧════════════╛
+1 row in set
+Time: 0.004s
+mysql 31165@localhost:A07> call checkout(101,500,@class);
+Query OK, 1 row affected
+Time: 2.550s
+mysql 31165@localhost:A07> SELECT @class;
+╒══════════╕
+│ @class   │
+╞══════════╡
+│ PLATINUM │
+╘══════════╛
+1 row in set
+Time: 0.002s
+mysql 31165@localhost:A07> SELECT * FROM customer NATURAL JOIN category WHERE cust_id=101;
+╒═══════════╤══════════════╤════════════╤══════════╕
+│   cust_id │ name         │   purchase │ class    │
+╞═══════════╪══════════════╪════════════╪══════════╡
+│       101 │ Ardith Morar │      10049 │ PLATINUM │
+╘═══════════╧══════════════╧════════════╧══════════╛
+1 row in set
+Time: 0.004s
+mysql 31165@localhost:A07> SELECT * FROM customer NATURAL JOIN category WHERE cust_id=102;
+╒═══════════╤═════════════════╤════════════╤═════════╕
+│   cust_id │ name            │   purchase │ class   │
+╞═══════════╪═════════════════╪════════════╪═════════╡
+│       102 │ Raymundo Torphy │       4095 │ SILVER  │
+╘═══════════╧═════════════════╧════════════╧═════════╛
+1 row in set
+Time: 0.004s
+mysql 31165@localhost:A07> SELECT checkout(102,1000) as updated_class;
+╒═════════════════╕
+│ updated_class   │
+╞═════════════════╡
+│ GOLD            │
+╘═════════════════╛
+1 row in set
+Time: 0.163s
+mysql 31165@localhost:A07> SELECT * FROM customer NATURAL JOIN category WHERE cust_id=102;
+╒═══════════╤═════════════════╤════════════╤═════════╕
+│   cust_id │ name            │   purchase │ class   │
+╞═══════════╪═════════════════╪════════════╪═════════╡
+│       102 │ Raymundo Torphy │       5095 │ GOLD    │
+╘═══════════╧═════════════════╧════════════╧═════════╛
+1 row in set
+Time: 0.004s
+mysql 31165@localhost:A07> SELECT * from category;
+╒═══════════╤══════════════════╤══════════╕
+│   cust_id │ name             │ class    │
+╞═══════════╪══════════════════╪══════════╡
+│       101 │ Ardith Morar     │ PLATINUM │
+├───────────┼──────────────────┼──────────┤
+│       102 │ Raymundo Torphy  │ GOLD     │
+├───────────┼──────────────────┼──────────┤
+│       103 │ Lisette Cronin   │ GOLD     │
+├───────────┼──────────────────┼──────────┤
+│       104 │ Belle Okuneva    │ SILVER   │
+├───────────┼──────────────────┼──────────┤
+│       105 │ Ashly Reinger    │ PLATINUM │
+├───────────┼──────────────────┼──────────┤
+│       106 │ Odessa Lindgren  │ PLATINUM │
+├───────────┼──────────────────┼──────────┤
+│       107 │ Roxanne Cole     │ BASIC    │
+├───────────┼──────────────────┼──────────┤
+│       108 │ Earnest Zieme    │ GOLD     │
+├───────────┼──────────────────┼──────────┤
+│       109 │ Walter Ferry     │ PLATINUM │
+├───────────┼──────────────────┼──────────┤
+│       110 │ Walter Ferry     │ PLATINUM │
+╘═══════════╧══════════════════╧══════════╛
+10 rows in set
+Time: 0.003s
+mysql 31165@localhost:A07> 
+
