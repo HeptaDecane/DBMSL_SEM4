@@ -276,7 +276,7 @@ db.bios.find(
 // The following operation finds documents in the bios collection and returns only the `name` field and the `contribs` field
 db.bios.find(
 	{ },
-    { 'name': 1, 'contribs': 1, '_id': 0 }
+	{ 'name': 1, 'contribs': 1, '_id': 0 }
 )
 ```
 - On Arrays and Embedded Documents
@@ -300,7 +300,7 @@ db.bios.findOne(
 	{
 		$or: [
 			{ 'name.first' : /^G/ },
-            { birth: { $lt: new Date('01/01/1945') } }
+			{ birth: { $lt: new Date('01/01/1945') } }
 		]
 	}
 )
