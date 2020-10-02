@@ -1,4 +1,7 @@
-﻿## Getting Started
+﻿<h2>
+<img src="https://cdn.iconscout.com/icon/free/png-512/mongodb-4-1175139.png" height="24px"> 		Getting Started with MongoDB 
+</h2>
+
 ### Create Admin User
 ```js
 db.createUser({    
@@ -119,128 +122,6 @@ db.collection.insertMany(
 		writeConcern: <document>,
 		ordered: <boolean>
 	}
-)
-```
-<br></br>
-### db.collection.remove( )
-Removes documents from a collection. The  [`remove()`](https://docs.mongodb.com/manual/reference/method/db.collection.remove/#db.collection.remove "db.collection.remove()")  method can take a query document and an optional  `justOne`  boolean
-> The basic syntax of **remove( )** method is as follows:
-```js
-db.<collection_name>.remove(
-	<query>,
-	<justOne>
-)
-```
-#### Examples
-- Remove All Documents from a Collection
-```js
-db.bios.remove( { } )
-```
-- Remove All Documents that Match a Condition
-```js
-// The following operation removes all the documents from the collection `products` where `qty` is greater than `20`
-db.products.remove( { qty: { $gt: 20 } } )
-```
-- Remove a Single Document that Matches a Condition
-```js
-//To remove the first document that match a deletion criteria, call the `remove` method with the `query` criteria and the `justOne` parameter set to `true` or `1`.
-db.products.remove( { qty: { $gt: 20 } }, true )
-```
-<br></br>
-### db.collection.update( )
-Modifies an existing document or documents in a collection. The method can modify specific fields of an existing document or documents or replace an existing document entirely, depending on the  [update parameter](https://docs.mongodb.com/manual/reference/method/db.collection.update/#update-parameter).
-
-By default, the  [`db.collection.update()`](https://docs.mongodb.com/manual/reference/method/db.collection.update/#db.collection.update "db.collection.update()")  method updates a  **single**  document. Include the option  [multi: true](https://docs.mongodb.com/manual/reference/method/db.collection.update/#multi-parameter)  to update all documents that match the query criteria.
-> The [`db.collection.update()`](https://docs.mongodb.com/manual/reference/method/db.collection.update/#db.collection.update "db.collection.update()") method has the following form:
-```js
-db.collection.update(
-   <query>,
-   <update>,
-	{
-		upsert: <boolean>,
-		multi: <boolean>,
-		writeConcern: <document>,
-		collation: <document>,
-		arrayFilters: [ <filterdocument1>, ... ],
-	    hint:  <document|string>        // Available starting in MongoDB 4.2
-	}
-)
-```
-example:
-```js
-db.books.update(
-	{ _id: 1 },
-	{
-		$inc: { stock: 5 },
-		$set: {
-			item: "ABC123",
-			"info.publisher": "2222",
-			tags: [ "software" ],
-			"ratings.1": { by: "xyz", rating: 3 }
-		}
-	}
-)
-```
-This operation corresponds to the following SQL statement:
-```sql
-UPDATE books
-SET    stock = stock + 5
-       item = "ABC123"
-       publisher = 2222
-       pages = 430
-       tags = "software"
-       rating_authors = "ijk,xyz"
-       rating_values = "4,3"
-WHERE  _id = 1
-```
-#### Insert a New Document if No Match Exists (`Upsert`)
-When you specify the option  [upsert: true](https://docs.mongodb.com/manual/reference/method/db.collection.update/#update-upsert):
-
--   If document(s) match the query criteria,  [`db.collection.update()`](https://docs.mongodb.com/manual/reference/method/db.collection.update/#db.collection.update "db.collection.update()")  performs an update.
--   If no document matches the query criteria,  [`db.collection.update()`](https://docs.mongodb.com/manual/reference/method/db.collection.update/#db.collection.update "db.collection.update()")  inserts a  _single_  document.
-```js
-db.books.update(
-	{ item: "ZZZ135" },   // Query parameter
-	{                     // Replacement document
-		item: "ZZZ135",
-		stock: 5,
-		tags: [ "database" ]
-	},
-	{ upsert: true }      // Options
-)
-```
-<br></br>
-### db.collection.updateOne( )
-Updates a single document within the collection based on the filter.
-> The [`updateOne()`](https://docs.mongodb.com/manual/reference/method/db.collection.updateOne/#db.collection.updateOne "db.collection.updateOne()") method has the following syntax:
-```js
-db.collection.updateOne(
-	<filter>,
-    <update>,
-    {
-		upsert: <boolean>,
-	    writeConcern: <document>,
-	    collation: <document>,
-	    arrayFilters: [ <filterdocument1>, ... ],
-	    hint:  <document|string>        // Available starting in MongoDB 4.2.1
-	}
-)
-```
-<br></br>
-### db.collection.updateMany( )
-Updates all documents that match the specified filter for a collection.
-> The  [`updateMany()`](https://docs.mongodb.com/manual/reference/method/db.collection.updateMany/#db.collection.updateMany "db.collection.updateMany()")  method has the following form:
-```js
-db.collection.updateMany(
-	<filter>,
-    <update>,
-    {
-		upsert: <boolean>,
-	    writeConcern: <document>,
-	    collation: <document>,
-	    arrayFilters: [ <filterdocument1>, ... ],
-	    hint:  <document|string>        // Available starting in MongoDB 4.2.1
-   }
 )
 ```
 <br></br>
@@ -483,5 +364,139 @@ db.people.findAndModify({
 	remove: true
 })
 ```
+<br></br>
+### db.collection.aggregate( )
+Aggregation operations group values from multiple documents together, and can perform a variety of operations on the grouped data to return a single result.
+> Basic syntax of **aggregate()** method is as follows:
+```js
+db.collection.aggerate([
+	{ $project: <document> },
+	{ $sort: <document> },
+	{ $match: <document> },
+	{ $group: <documrent> },
+	{ $limit: <number> }
+])
+```
+<br></br>
+### db.collection.update( )
+Modifies an existing document or documents in a collection. The method can modify specific fields of an existing document or documents or replace an existing document entirely, depending on the  [update parameter](https://docs.mongodb.com/manual/reference/method/db.collection.update/#update-parameter).
 
+By default, the  [`db.collection.update()`](https://docs.mongodb.com/manual/reference/method/db.collection.update/#db.collection.update "db.collection.update()")  method updates a  **single**  document. Include the option  [multi: true](https://docs.mongodb.com/manual/reference/method/db.collection.update/#multi-parameter)  to update all documents that match the query criteria.
+> The [`db.collection.update()`](https://docs.mongodb.com/manual/reference/method/db.collection.update/#db.collection.update "db.collection.update()") method has the following form:
+```js
+db.collection.update(
+   <query>,
+   <update>,
+	{
+		upsert: <boolean>,
+		multi: <boolean>,
+		writeConcern: <document>,
+		collation: <document>,
+		arrayFilters: [ <filterdocument1>, ... ],
+	    hint:  <document|string>        // Available starting in MongoDB 4.2
+	}
+)
+```
+example:
+```js
+db.books.update(
+	{ _id: 1 },
+	{
+		$inc: { stock: 5 },
+		$set: {
+			item: "ABC123",
+			"info.publisher": "2222",
+			tags: [ "software" ],
+			"ratings.1": { by: "xyz", rating: 3 }
+		}
+	}
+)
+```
+This operation corresponds to the following SQL statement:
+```sql
+UPDATE books
+SET    stock = stock + 5
+       item = "ABC123"
+       publisher = 2222
+       pages = 430
+       tags = "software"
+       rating_authors = "ijk,xyz"
+       rating_values = "4,3"
+WHERE  _id = 1
+```
+#### Insert a New Document if No Match Exists (`Upsert`)
+When you specify the option  [upsert: true](https://docs.mongodb.com/manual/reference/method/db.collection.update/#update-upsert):
 
+-   If document(s) match the query criteria,  [`db.collection.update()`](https://docs.mongodb.com/manual/reference/method/db.collection.update/#db.collection.update "db.collection.update()")  performs an update.
+-   If no document matches the query criteria,  [`db.collection.update()`](https://docs.mongodb.com/manual/reference/method/db.collection.update/#db.collection.update "db.collection.update()")  inserts a  _single_  document.
+```js
+db.books.update(
+	{ item: "ZZZ135" },   // Query parameter
+	{                     // Replacement document
+		item: "ZZZ135",
+		stock: 5,
+		tags: [ "database" ]
+	},
+	{ upsert: true }      // Options
+)
+```
+<br></br>
+### db.collection.updateOne( )
+Updates a single document within the collection based on the filter.
+> The [`updateOne()`](https://docs.mongodb.com/manual/reference/method/db.collection.updateOne/#db.collection.updateOne "db.collection.updateOne()") method has the following syntax:
+```js
+db.collection.updateOne(
+	<filter>,
+    <update>,
+    {
+		upsert: <boolean>,
+	    writeConcern: <document>,
+	    collation: <document>,
+	    arrayFilters: [ <filterdocument1>, ... ],
+	    hint:  <document|string>        // Available starting in MongoDB 4.2.1
+	}
+)
+```
+<br></br>
+### db.collection.updateMany( )
+Updates all documents that match the specified filter for a collection.
+> The  [`updateMany()`](https://docs.mongodb.com/manual/reference/method/db.collection.updateMany/#db.collection.updateMany "db.collection.updateMany()")  method has the following form:
+```js
+db.collection.updateMany(
+	<filter>,
+    <update>,
+    {
+		upsert: <boolean>,
+	    writeConcern: <document>,
+	    collation: <document>,
+	    arrayFilters: [ <filterdocument1>, ... ],
+	    hint:  <document|string>        // Available starting in MongoDB 4.2.1
+   }
+)
+```
+
+<br></br>
+### db.collection.remove( )
+Removes documents from a collection. The  [`remove()`](https://docs.mongodb.com/manual/reference/method/db.collection.remove/#db.collection.remove "db.collection.remove()")  method can take a query document and an optional  `justOne`  boolean
+> The basic syntax of **remove( )** method is as follows:
+```js
+db.<collection_name>.remove(
+	<query>,
+	<justOne>
+)
+```
+#### Examples
+- Remove All Documents from a Collection
+```js
+db.bios.remove( { } )
+```
+- Remove All Documents that Match a Condition
+```js
+// The following operation removes all the documents from the collection `products` where `qty` is greater than `20`
+db.products.remove( { qty: { $gt: 20 } } )
+```
+- Remove a Single Document that Matches a Condition
+```js
+//To remove the first document that match a deletion criteria, call the `remove` method with the `query` criteria and the `justOne` parameter set to `true` or `1`.
+db.products.remove( { qty: { $gt: 20 } }, true )
+```
