@@ -423,7 +423,8 @@ db.students.update(
 db.collection.aggregate( [ { <stage> }, ... ] )
 ```
 MongoDB’s  [aggregation framework](https://docs.mongodb.com/manual/core/aggregation-pipeline/)  is modeled on the concept of data processing pipelines. Documents enter a multi-stage pipeline that transforms the documents into an aggregated result.
->Aggregation Pipeline Illustration
+>Aggregation Pipeline Illustration   
+
 ![Aggregation Pipeline](https://iili.io/2ME7up.gif)
 - ### `$count`
 Returns a count of the number of documents at this stage of the aggregation pipeline.
@@ -566,6 +567,13 @@ db.articles.aggregate(
 { "_id" : ObjectId("512bc95fe835e68f199c8686"), "author" : "dave", "score" : 80, "views" : 100 }
 { "_id" : ObjectId("512bc962e835e68f199c8687"), "author" : "dave", "score" : 85, "views" : 521 }
 ```
+- ### `$project`
+Reshapes each document in the stream, such as by adding new fields or removing existing fields
+```js
+{ $project: { '<field1>': <0|1> '<field2>': <0|1>, ... } }
+```
+The [`$project`](https://docs.mongodb.com/manual/reference/operator/aggregation/project/#pipe._S_project "$project") takes a document that can specify the inclusion of fields, the suppression of the `_id` field, the addition of new fields, and the resetting of the values of existing fields.
+
 - ### `$sort`
 Sorts all input documents and returns them to the pipeline in sorted order. For the field or fields to sort by, set the sort order to `1` or `-1` to specify an ascending or descending sort respectively
 ```js
