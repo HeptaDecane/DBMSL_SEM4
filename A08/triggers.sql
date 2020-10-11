@@ -41,7 +41,6 @@ delimiter ;
 
 
 # Extra
-
 delimiter ~
 
 create trigger calculate_fine
