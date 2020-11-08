@@ -26,7 +26,7 @@ db.users.insert([
 		  	'country': 'USA',
 		  	'zip': '99587'
     	}
-    }, 
+    },
     {
         'username': "hillrachel",
         'name': "Katherine David",

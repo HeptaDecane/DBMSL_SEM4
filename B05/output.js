@@ -1,4 +1,4 @@
-// $push 
+// $push
 db.articles.find({_id: ObjectId("5f984c94c073c15764b64fcc")}).pretty() 
 /*
 {
