@@ -107,6 +107,44 @@ db.articles.find(
 */
 
 
+// embedded query
+db.articles.find({"comments.username":"glopez"}).pretty()      
+/*                                                      
+{
+        "_id" : ObjectId("5f984c94c073c15764b64fd5"),
+        "author" : "andrewhamilton",
+        "title" : "Napoleon",
+        "read_time" : 4,
+        "reads" : 32,
+        "genres" : [
+                "Biography",
+                "Drama",
+                "History"
+        ],
+        "upvotes" : [
+                "matthewray",
+                "serranobrian",
+                "hillrachel"
+        ],
+        "published" : ISODate("2020-03-05T00:00:00Z"),
+        "comments" : [
+                {
+                        "username" : "glopez",
+                        "text" : "Numquam voluptas veniam ducimus sunt accusamus harum distinctio autem. Aliquid dicta nulla aperiam veniam placeat quam. Veritatis maiores ipsa quos accusantium molestiae eum voluptatibus."
+                },
+                {
+                        "username" : "hmyers",
+                        "text" : "Perspiciatis sit pariatur quas. Perferendis officia harum ipsum deleniti vel inventore. Nobis culpa eaque in blanditiis porro esse. Nisi deserunt culpa expedita dolorum quo aperiam."
+                },
+                {
+                        "username" : "mwells",
+                        "text" : "Iure laboriosam quo et necessitatibus sed. Id iure delectus soluta. Quaerat officiis maiores commodi earum. Autem odio labore debitis optio libero."
+                }
+        ]
+}
+*/
+
+
 // $all
 db.articles.find({
     $and:[
