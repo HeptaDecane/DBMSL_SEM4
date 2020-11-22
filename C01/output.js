@@ -45,10 +45,7 @@ Operation: delete
 author: dana88
 title: Wings
 result: AcknowledgedDeleteResult{deletedCount=0}
-Operation: delete
-author: Wings-Revised
-title: 
-result: AcknowledgedDeleteResult{deletedCount=0}
+
 Operation: delete
 author: dana88
 title: Wings-Revised
