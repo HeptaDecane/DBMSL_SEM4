@@ -23,7 +23,7 @@ public class Main {
     static {
         mongoClient = MongoClients.create("mongodb://localhost:27017");
         db = mongoClient.getDatabase("sample_medium");
-        collection = db.getCollection("articles");
+        collection = db.getCollection("article");
         settings = JsonWriterSettings.builder().indent(true).build();
         scanner = new Scanner(System.in);
     }
