@@ -3,8 +3,8 @@ import java.util.Scanner;
 public class Main {
     private static Scanner input = new Scanner(System.in);
     private static String query;
-    private static String isbn, title, price, author_no, publisher_no, pub_year;
-    private static boolean flag;
+    private static String isbn, title, author, publisher;
+    private static int price, pub_year;
 
     static {
         MysqlHandler.main(new String[0]);
@@ -12,7 +12,7 @@ public class Main {
     }
 
     public static void main(String[] args) {
-
+        int rowsAffected;
         int choice = 1;
         while (choice != 0) {
             switch (choice){
@@ -21,19 +21,88 @@ public class Main {
                 break;
 
                 case 2:
+                    System.out.println("\nCREATING TABLE");
                     query = "create table book(\n" +
-                            "    ISBN varchar(16) not null ,\n" +
-                            "    title varchar(32) not null ,\n" +
-                            "    unit_price int not null ,\n" +
-                            "    author_no int not null ,\n" +
-                            "    publisher_no int not null ,\n" +
-                            "    pub_year int not null\n" +
+                            "    ISBN varchar(32) not null primary key, \n" +
+                            "    title varchar(32) not null, \n" +
+                            "    price int not null, \n" +
+                            "    pub_year int not null, \n" +
+                            "    author varchar(32) not null, \n" +
+                            "    publisher varchar(32) not null \n" +
                             ")";
-                    flag = MysqlHandler.execute(query);
-                    System.out.println(flag);
+                    System.out.println(query);
+                    MysqlHandler.execute(query);
                 break;
 
                 case 3:
+                    System.out.println("\nINSERT NEW BOOK");
+                    System.out.print("ISBN: ");
+                    isbn = input.nextLine();
+                    System.out.print("Title: ");
+                    title = input.nextLine();
+                    System.out.print("Price: ");
+                    price = Integer.parseInt(input.nextLine());
+                    System.out.print("Published Year: ");
+                    pub_year = Integer.parseInt(input.nextLine());
+                    System.out.print("Author: ");
+                    author = input.nextLine();
+                    System.out.print("Publisher: ");
+                    publisher = input.nextLine();
+
+                    query = String.format(
+                            "insert into book (ISBN,title,price,pub_year,author,publisher)\n" +
+                            "values ('%s','%s',%s,%s,'%s','%s')",isbn,title,price,pub_year,author,publisher
+                    );
+                    System.out.println(query);
+                    MysqlHandler.executeUpdate(query);
+                break;
+
+                case 4:
+                    System.out.println("\nUPDATE BOOK");
+                    System.out.print("ISBN: ");
+                    isbn = input.nextLine();
+                    System.out.print("New Title: ");
+                    title = input.nextLine();
+                    System.out.print("New Price: ");
+                    price = Integer.parseInt(input.nextLine());
+                    System.out.print("New Published Year: ");
+                    pub_year = Integer.parseInt(input.nextLine());
+                    System.out.print("New Author: ");
+                    author = input.nextLine();
+                    System.out.print("New Publisher: ");
+                    publisher = input.nextLine();
+
+                    query = String.format(
+                            "update book set title='%s',price=%s,pub_year=%s,author='%s',publisher='%s'\n" +
+                            "where ISBN='%s'",title,price,pub_year,author,publisher,isbn
+                    );
+                    System.out.println(query);
+                    rowsAffected = MysqlHandler.executeUpdate(query);
+                    if (rowsAffected == 0)
+                        System.out.println("ISBN: "+isbn+" Not Found");
+                    else
+                        System.out.println("Book Updated");
+                break;
+
+                case 5:
+                    System.out.println("\nDELETE BOOK");
+                    System.out.print("ISBN: ");
+                    isbn = input.nextLine();
+
+                    query = String.format("delete from book where ISBN='%s'",isbn);
+                    System.out.println(query);
+                    rowsAffected = MysqlHandler.executeUpdate(query);
+                    if (rowsAffected == 0)
+                        System.out.println("ISBN: "+isbn+" Not Found");
+                    else
+                        System.out.println("Book Deleted");
+
+                break;
+
+                case 6:
+                    System.out.println("\nBOOKS TABLE");
+                    MysqlHandler.executeQuery("select * from book");
+                break;
 
                 default:
                     System.out.println("Option ("+choice+") not found");
@@ -41,10 +110,10 @@ public class Main {
 
             System.out.println();
             System.out.print("Enter Choice: ");
-            choice = input.nextInt();
+            choice = Integer.parseInt(input.nextLine());
         }
 
-        System.out.println("Terminated.");
+        System.out.println("exit()");
     }
     
     public static void printHints(){

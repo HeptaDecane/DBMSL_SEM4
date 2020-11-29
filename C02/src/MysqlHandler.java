@@ -38,13 +38,10 @@ public abstract class MysqlHandler {
     }
 
     static boolean execute(String query){
-        boolean flag = false;
         try{
             connection = DriverManager.getConnection(url,username,password);
             statement = connection.createStatement();
-            statement.execute(query);
-            System.out.println("\n"+query+": success\n");
-            flag = true;
+            return statement.execute(query);
 
         }catch (SQLException e){
             System.out.println();
@@ -62,7 +59,32 @@ public abstract class MysqlHandler {
                 System.out.println(e);
             }
         }
-        return flag;
+        return false;
+    }
+
+    static int executeUpdate(String query){
+        try{
+            connection = DriverManager.getConnection(url,username,password);
+            statement = connection.createStatement();
+            return statement.executeUpdate(query);
+
+        }catch (SQLException e){
+            System.out.println();
+            System.out.println(e.getMessage());
+            System.out.println();
+        }catch (Exception e){
+            System.out.println(e);
+        }finally {
+            try {
+                if(statement != null)
+                    statement.close();
+                if(connection != null)
+                    connection.close();
+            }catch (Exception e){
+                System.out.println(e);
+            }
+        }
+        return -1;
     }
 
     static void executeQuery(String query){
@@ -75,18 +97,18 @@ public abstract class MysqlHandler {
             String headers="";
             for(int i=1;i<=columns;i++){
                 String a="";
-                headers += String.format("%-40s",resultSet.getMetaData().getColumnName(i))+" ";
+                headers += String.format("%-20s",resultSet.getMetaData().getColumnName(i))+" ";
             }
             System.out.println(headers);
 
-            for(int i=0;i<columns*40;i++)
+            for(int i=0;i<columns*20;i++)
                 System.out.print("-");
             System.out.println();
 
             while(resultSet.next()){
                 String row = "";
                 for(int i=1;i<=columns;i++) {
-                    row += String.format("%-40s",resultSet.getString(i))+" ";
+                    row += String.format("%-20s",resultSet.getString(i))+" ";
                 }
                 System.out.println(row);
             }
